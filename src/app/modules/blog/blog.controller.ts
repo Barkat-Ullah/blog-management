@@ -74,12 +74,14 @@ const deleteBlog = catchAsync(async (req, res) => {
   });
 });
 const getAllBlogs = catchAsync(async (req, res) => {
-  const result = await BlogServices.getAllBlogsIntoDB(req.query);
+  const blogs = await BlogServices.getAllBlogsIntoDB(req.query);
+
 
   res.status(200).json({
     success: true,
-    message: 'All Blogs are getting successfully',
-    data: result,
+    message: 'Blogs fetched successfully',
+    statusCode: 200,
+    data: blogs,
   });
 });
 

@@ -27,14 +27,19 @@ const deleteBlogIntoDb = async (id: string) => {
   const result = await Blog.findByIdAndDelete(id);
   return result;
 };
+
 const getAllBlogsIntoDB = async (query: Record<string, unknown>) => {
   const queryBlog = new QueryBuilder(
-    Blog.find().populate('author', ' title email'),
+    Blog.find().populate('author', 'name email'),
     query,
   )
-    .search(blogFields)
+    .search(['title', 'content'])
+    .sortBy()
+    .sortOrder()
     .filter();
+
   const result = await queryBlog.modelQuery;
+
   return result;
 };
 

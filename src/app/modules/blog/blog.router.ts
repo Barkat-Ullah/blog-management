@@ -25,7 +25,7 @@ router.delete(
   BlogControllers.deleteBlog,
 );
 router.get(
-  '/',
+  '',
   auth(USER_ROLE.user),
   BlogControllers.getAllBlogs,
 );
